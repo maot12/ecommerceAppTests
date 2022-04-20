@@ -46,6 +46,10 @@ public class ecommerce_tc_03 extends conectorRealAndroid{
 			
 			driver.findElement(By.id("com.androidsample.generalstore:id/btnLetsShop"))
 			.click();
+			
+			/*
+			 *  Siguiente pantalla
+			 *   */
 						
 			driver.findElement(MobileBy.AndroidUIAutomator("new UiScrollable(new UiSelector()"
 					+ ".resourceId(\"com.androidsample.generalstore:id/rvProductList\"))"
