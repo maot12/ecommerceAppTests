@@ -52,8 +52,12 @@ public class ecommerce_tc_05 extends conectorRealAndroid{
 			 *  Siguiente pantalla
 			 *   */
 						
-			driver.findElements(By.xpath("//*[@text='ADD TO CART']")).get(0).click();
-			driver.findElements(By.xpath("//*[@text='ADD TO CART']")).get(0).click();
+			driver.findElements(By.xpath("//*[@text='ADD TO CART']"))
+			.get(0)
+			.click();
+			driver.findElements(By.xpath("//*[@text='ADD TO CART']"))
+			.get(0)
+			.click();
 			
 			driver.findElement(By.id("com.androidsample.generalstore:id/appbar_btn_cart")).click();
 			
@@ -62,27 +66,25 @@ public class ecommerce_tc_05 extends conectorRealAndroid{
 			/*
 			 *  Siguiente pantalla
 			 *   */
+			double productValueClean = 0;
+			for(int i=0;i<driver.findElements(By.id("com.androidsample.generalstore:id/productPrice")).size();i++) {
+				
+				String valueString = driver.findElements(By.id("com.androidsample.generalstore:id/productPrice"))
+						.get(i)
+						.getText();
+				productValueClean += getDoubleClean(valueString);
+				
+			}
 			
-			String amount1 = driver.findElements(By.id("com.androidsample.generalstore:id/productPrice")).get(0).getText();
-			amount1 = amount1.substring(1);
-			Double amount1value = Double.parseDouble(amount1);
+			System.out.println(productValueClean);
 			
-			String amount2 = driver.findElements(By.id("com.androidsample.generalstore:id/productPrice")).get(1).getText();
-			amount2 = amount2.substring(1);
-			Double amount2value = Double.parseDouble(amount2);
-			
-			Double sumOfProduct = amount1value + amount2value;
-			
-			System.out.println(sumOfProduct);
-			
-			String total = driver.findElements(By.id("com.androidsample.generalstore:id/totalAmountLbl")).get(0).getText();
-			total = total.substring(1);
-			Double totalValue = Double.parseDouble(total);
+			String total = driver.findElements(By.id("com.androidsample.generalstore:id/totalAmountLbl"))
+					.get(0)
+					.getText();
+			double totalValue = getDoubleClean(total);
 			System.out.println(totalValue);
 			
-			Assert.assertEquals(sumOfProduct, totalValue);
-			
-			
+			Assert.assertEquals(productValueClean, totalValue);
 			
 			 
 		} catch (Exception e) {
@@ -91,5 +93,13 @@ public class ecommerce_tc_05 extends conectorRealAndroid{
 		}
 
 	}
-
+	
+	public static double getDoubleClean(String value) {
+		
+		value = value.substring(1);
+		double valueDouble = Double.parseDouble(value);
+		
+		return valueDouble;
+		
+	}
 }
