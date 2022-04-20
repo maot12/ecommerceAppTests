@@ -7,9 +7,17 @@ import org.testng.Assert;
 import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 
+/**
+ * @author mortega2
+ *
+ */
 @SuppressWarnings("deprecation")
 public class ecommerce_tc_02 extends conectorRealAndroid{
 
+	/**
+	 * Fill the form details and verify Toast error messages
+	 * displayed appropriately for wrong inputs
+	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
@@ -17,8 +25,6 @@ public class ecommerce_tc_02 extends conectorRealAndroid{
 		
 		String scrollable = "new UiScrollable(new UiSelector())"
 				+ ".scrollIntoView(text(\""+pais+"\"));";
-		
-		
 		
 		try {
 			AndroidDriver driver = capabilities("emulator");
